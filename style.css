@@ -1,0 +1,55 @@
+body {
+  background-image: linear-gradient(#615dad, #ffc8da);
+  background-size: auto;
+}
+
+.game {
+  width: 30%;
+  background-color: #283e50;
+  border-radius: 10px 10px 0 0;
+  margin: auto;
+  position: relative;
+  top: 80px;
+  color: white;
+  text-align: center;
+  line-height: 1.5;
+}
+
+img {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+}
+
+.rules {
+  display: block;
+  background-color: #1fcca4;
+  border-bottom: solid 1.5px #283e50;
+}
+
+.rules:hover {
+  background-color: #1cbb96;
+}
+
+.play {
+  display: block;
+  background-color: #0197f6;
+}
+
+.play:hover {
+  background-color: #0090e9;
+}
+
+h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 48px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+}
+
+p {
+  margin: 2rem;
+}
