@@ -1,10 +1,11 @@
 body {
   background-image: linear-gradient(#615dad, #ffc8da);
   background-repeat: no-repeat;
+  min-height: 110vh;
 }
 
 .game {
-  width: 40%;
+  width: 410px;
   background-color: #283e50;
   border-radius: 10px 10px 0 0;
   margin: auto;
