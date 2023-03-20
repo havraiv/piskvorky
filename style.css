@@ -1,6 +1,6 @@
 body {
   background-image: linear-gradient(#615dad, #ffc8da);
-  background-size: auto;
+  background-repeat: no-repeat;
 }
 
 .game {
@@ -9,12 +9,11 @@ body {
   border-radius: 10px 10px 0 0;
   margin: auto;
   position: relative;
-  top: 80px;
+  top: 60px;
   color: white;
   text-align: center;
   line-height: 1.5;
-  margin-bottom: 80px;
-  /*šouplo mi to sice pozadí do správných barev, ale neudělalo tu mezeru*/
+  font-family: "Open Sans", sans-serif;
 }
 
 img {
