@@ -56,7 +56,8 @@ body {
 }
 
 .rules:hover,
-.rules:focus .home__icon:hover,
+.rules:focus,
+.home__icon:hover,
 .home__icon:focus {
   background-color: #1cbb96;
 }
