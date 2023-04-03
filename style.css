@@ -4,7 +4,6 @@
 
 body {
   background: linear-gradient(#615dad, #ffc8da);
-  background-repeat: no-repeat;
   min-height: 100vh;
   margin: 0;
 }
@@ -68,6 +67,10 @@ body {
   background-color: #0197f6;
 }
 
+.whoplays__player {
+  font-weight: bold;
+}
+
 .play:hover,
 .play:focus,
 .restart__icon:hover,
@@ -75,7 +78,7 @@ body {
   background-color: #0090e9;
 }
 
-h1 {
+.title {
   font-family: "Lobster";
   font-size: 48px;
   text-align: center;
