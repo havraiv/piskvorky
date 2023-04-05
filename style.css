@@ -99,11 +99,12 @@ p {
 }
 
 button {
-  width: 100%;
-  height: 100%;
+  width: 8vmin;
+  height: 8vmin;
   background: rgba(255, 255, 255, 0.3);
   border: 0;
   cursor: pointer;
+  padding: 0;
 }
 
 button:hover,
@@ -134,3 +135,15 @@ td {
   border: 2px solid black;
   height: 8vmin;
 }
+
+.board__field--circle::before {
+  content: '';
+  display: inline-block;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: none;
+  border: 4px solid black;
+}
+
+.board__field--cross
