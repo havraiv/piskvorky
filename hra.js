@@ -1,7 +1,13 @@
 let currentPlayer = 'circle';
 
 const addClass = (event) => {
-  event.target.classList.add('board__field--circle');
+  if (currentPlayer === 'circle') {
+    event.target.classList.add('board__field--circle');
+    return (currentPlayer = 'cross');
+  } else if (currentPlayer === 'cross') {
+    event.target.classList.add('board__field--cross');
+    return (currentPlayer = 'circle');
+  }
 };
 
 document.querySelector('.button1').addEventListener('click', addClass);
