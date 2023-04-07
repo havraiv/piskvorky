@@ -28,7 +28,6 @@ const addClass = (event) => {
 };
 
 const confirmIt = (event) => {
-  // confirm('Opravdu chceš začít znovu?');
   if (confirm('Opravdu chceš začít znovu?') === false) {
     event.preventDefault();
   }

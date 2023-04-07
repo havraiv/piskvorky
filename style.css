@@ -145,9 +145,11 @@ td {
   border-radius: 50%;
   background: none;
   border: 5px solid black;
+  animation: zoom 0.15s linear;
 }
 
-.board__field--cross::after {
+.board__field--cross::after,
+.board__field--cross::before {
   content: '';
   display: inline-block;
   height: 65%;
@@ -155,16 +157,22 @@ td {
   transform: rotate(45deg);
   position: relative;
   right: 2px;
+  animation: zoom 0.15s;
 }
 
 .board__field--cross::before {
-  content: '';
-  display: inline-block;
-  height: 65%;
-  border: 2.5px solid black;
   transform: rotate(-45deg);
-  position: relative;
   left: 2px;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .cross {
