@@ -19,6 +19,19 @@ const addClass = (event) => {
     circleElm.remove();
     const whoPlaysElm = document.querySelector('.whoplays');
     whoPlaysElm.innerHTML = crossSvg;
+    const square = Array.from(buttons);
+    const squareArray = square.map((symbol) => {
+      if (symbol.classList.contains('board__field--cross')) {
+        return 'x';
+      } else if (symbol.classList.contains('board__field--circle')) {
+        return 'o';
+      } else {
+        return '_';
+      }
+    });
+    console.log(squareArray); /*Pak smazat */
+    const winner = findWinner(squareArray);
+    console.log(winner);
     return (currentPlayer = 'cross');
   } else if (currentPlayer === 'cross') {
     event.target.classList.add('board__field--cross');
@@ -27,6 +40,19 @@ const addClass = (event) => {
     crossElm.remove();
     const whoPlaysElm = document.querySelector('.whoplays');
     whoPlaysElm.innerHTML = circleSvg;
+    const square = Array.from(buttons);
+    const squareArray = square.map((symbol) => {
+      if (symbol.classList.contains('board__field--cross')) {
+        return 'x';
+      } else if (symbol.classList.contains('board__field--circle')) {
+        return 'o';
+      } else {
+        return '_';
+      }
+    });
+    console.log(squareArray); /*Pak smazat */
+    const winner = findWinner(squareArray);
+    console.log(winner);
     return (currentPlayer = 'circle');
   }
 };
@@ -41,15 +67,4 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
   button.addEventListener('click', addClass);
-});
-
-const square = Array.from(buttons);
-const squareArray = square.map((symbol) => {
-  if (symbol.classList.contains('board__field--cross')) {
-    return 'x';
-  } else if (symbol.classList.contains('board__field--circle')) {
-    return 'o';
-  } else {
-    return '_';
-  }
 });
