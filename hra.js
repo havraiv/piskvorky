@@ -1,3 +1,5 @@
+import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4';
+
 let currentPlayer = 'circle';
 const crossSvg = `<span class="whoplays__player">HRAJE: </span>
 <svg class="cross" width="20" height="20" viewBox="0 0 20 20" overflow="visible" stroke="white" stroke-width="2.5">
@@ -40,5 +42,7 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', addClass);
 });
+
+console.log(Array.from(buttons));
 
 document.querySelector('.restart').addEventListener('click', confirmIt);
