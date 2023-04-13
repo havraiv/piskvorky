@@ -29,9 +29,15 @@ const addClass = (event) => {
         return '_';
       }
     });
-    console.log(squareArray); /*Pak smazat */
     const winner = findWinner(squareArray);
-    console.log(winner);
+    console.log(winner); /*Pak smazat */
+    if (winner === 'x') {
+      alert('Vyhrál křížek!');
+      location.reload();
+    } else if (winner === 'o') {
+      alert('Vyhrálo kolečko!');
+      location.reload();
+    }
     return (currentPlayer = 'cross');
   } else if (currentPlayer === 'cross') {
     event.target.classList.add('board__field--cross');
@@ -50,9 +56,15 @@ const addClass = (event) => {
         return '_';
       }
     });
-    console.log(squareArray); /*Pak smazat */
     const winner = findWinner(squareArray);
-    console.log(winner);
+    console.log(winner); /*Pak smazat */
+    if (winner === 'x') {
+      alert('Vyhrál křížek!');
+      location.reload();
+    } else if (winner === 'o') {
+      alert('Vyhrálo kolečko!');
+      location.reload();
+    }
     return (currentPlayer = 'circle');
   }
 };
