@@ -36,13 +36,20 @@ const confirmIt = (event) => {
     event.preventDefault();
   }
 };
-
+document.querySelector('.restart').addEventListener('click', confirmIt);
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
   button.addEventListener('click', addClass);
 });
 
-console.log(Array.from(buttons));
-
-document.querySelector('.restart').addEventListener('click', confirmIt);
+const square = Array.from(buttons);
+const squareArray = square.map((symbol) => {
+  if (symbol.classList.contains('board__field--cross')) {
+    return 'x';
+  } else if (symbol.classList.contains('board__field--circle')) {
+    return 'o';
+  } else {
+    return '_';
+  }
+});
