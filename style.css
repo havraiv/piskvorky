@@ -155,7 +155,7 @@ td {
   transform: rotate(45deg);
   position: relative;
   right: 2px;
-  animation: zoom 0.15s;
+  animation: zoom 0.15s linear;
 }
 
 .board__field--cross::before {
