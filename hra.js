@@ -30,13 +30,16 @@ const addClass = (event) => {
       }
     });
     const winner = findWinner(squareArray);
-    console.log(winner); /*Pak smazat */
     if (winner === 'x') {
-      alert('Vyhrál křížek!');
-      location.reload();
+      setTimeout(() => {
+        alert('Vyhrál křížek!');
+        location.reload();
+      }, 500);
     } else if (winner === 'o') {
-      alert('Vyhrálo kolečko!');
-      location.reload();
+      setTimeout(() => {
+        alert('Vyhrálo kolečko!');
+        location.reload();
+      }, 500);
     }
     return (currentPlayer = 'cross');
   } else if (currentPlayer === 'cross') {
@@ -57,13 +60,16 @@ const addClass = (event) => {
       }
     });
     const winner = findWinner(squareArray);
-    console.log(winner); /*Pak smazat */
     if (winner === 'x') {
-      alert('Vyhrál křížek!');
-      location.reload();
+      setTimeout(() => {
+        alert('Vyhrál křížek!');
+        location.reload();
+      }, 500);
     } else if (winner === 'o') {
-      alert('Vyhrálo kolečko!');
-      location.reload();
+      setTimeout(() => {
+        alert('Vyhrálo kolečko!');
+        location.reload();
+      }, 500);
     }
     return (currentPlayer = 'circle');
   }
@@ -76,7 +82,6 @@ const confirmIt = (event) => {
 };
 document.querySelector('.restart').addEventListener('click', confirmIt);
 const buttons = document.querySelectorAll('button');
-
 buttons.forEach((button) => {
   button.addEventListener('click', addClass);
 });
