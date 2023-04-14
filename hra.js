@@ -1,6 +1,7 @@
 import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4';
 
 let currentPlayer = 'circle';
+
 const crossSvg = `<span class="whoplays__player">HRAJE: </span>
 <svg class="cross" width="20" height="20" viewBox="0 0 20 20" overflow="visible" stroke="white" stroke-width="2.5">
   <line x2="20" y2="20" />
@@ -40,6 +41,11 @@ const addClass = (event) => {
         alert('Vyhrálo kolečko!');
         location.reload();
       }, 500);
+    } else if (winner === 'tie') {
+      setTimeout(() => {
+        alert('Hra skončila nerozhodně.');
+        location.reload();
+      }, 500);
     }
     return (currentPlayer = 'cross');
   } else if (currentPlayer === 'cross') {
@@ -70,6 +76,11 @@ const addClass = (event) => {
         alert('Vyhrálo kolečko!');
         location.reload();
       }, 500);
+    } else if (winner === 'tie') {
+      setTimeout(() => {
+        alert('Hra skončila nerozhodně.');
+        location.reload();
+      }, 500);
     }
     return (currentPlayer = 'circle');
   }
@@ -80,8 +91,11 @@ const confirmIt = (event) => {
     event.preventDefault();
   }
 };
+
 document.querySelector('.restart').addEventListener('click', confirmIt);
+
 const buttons = document.querySelectorAll('button');
+
 buttons.forEach((button) => {
   button.addEventListener('click', addClass);
 });
