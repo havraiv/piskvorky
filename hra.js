@@ -35,17 +35,17 @@ const addClass = (event) => {
       setTimeout(() => {
         alert('Vyhrál křížek!');
         location.reload();
-      }, 500);
+      }, 200);
     } else if (winner === 'o') {
       setTimeout(() => {
         alert('Vyhrálo kolečko!');
         location.reload();
-      }, 500);
+      }, 200);
     } else if (winner === 'tie') {
       setTimeout(() => {
         alert('Hra skončila nerozhodně.');
         location.reload();
-      }, 500);
+      }, 200);
     }
     return (currentPlayer = 'cross');
   } else if (currentPlayer === 'cross') {
@@ -70,17 +70,17 @@ const addClass = (event) => {
       setTimeout(() => {
         alert('Vyhrál křížek!');
         location.reload();
-      }, 500);
+      }, 200);
     } else if (winner === 'o') {
       setTimeout(() => {
         alert('Vyhrálo kolečko!');
         location.reload();
-      }, 500);
+      }, 200);
     } else if (winner === 'tie') {
       setTimeout(() => {
         alert('Hra skončila nerozhodně.');
         location.reload();
-      }, 500);
+      }, 200);
     }
     return (currentPlayer = 'circle');
   }
