@@ -9,7 +9,7 @@ const circleSvg = `<span class="whoplays__player">HRAJE: </span>
 <svg class="circle" width="36" height="36">
   <circle class="circle" cx="18" cy="18" r="10" stroke="white" stroke-width="2.5" fill="transparent"/>
 </svg>`;
-
+const buttons = document.querySelectorAll('button');
 const myFindWinner = () => {
   const square = Array.from(buttons);
   const squareArray = square.map((symbol) => {
@@ -52,6 +52,38 @@ const addClass = (event) => {
     myFindWinner();
     return (currentPlayer = 'cross');
   } else if (currentPlayer === 'cross') {
+    const square = Array.from(buttons);
+    const squareArray = square.map((symbol) => {
+      if (symbol.classList.contains('board__field--cross')) {
+        return 'x';
+      } else if (symbol.classList.contains('board__field--circle')) {
+        return 'o';
+      } else {
+        return '_';
+      }
+    });
+    const response = fetch(
+      'https://piskvorky.czechitas-podklady.cz/api/suggest-next-move',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          board: squareArray,
+          player: 'x',
+        }),
+      },
+    )
+      .then((d) => d.json())
+      .then((data) => {
+        const { x, y } = data.position;
+        const index = x + y * 10;
+        console.log('hraje ' + index);
+        console.log(squareArray);
+        buttons[index].click();
+      });
+
     event.target.classList.add('board__field--cross');
     event.target.disabled = true;
     const crossElm = document.querySelector('.cross');
@@ -62,7 +94,7 @@ const addClass = (event) => {
     return (currentPlayer = 'circle');
   }
 };
-const buttons = document.querySelectorAll('button');
+
 buttons.forEach((button) => {
   button.addEventListener('click', addClass);
 });
