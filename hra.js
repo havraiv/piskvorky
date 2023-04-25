@@ -1,7 +1,5 @@
 import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4';
 
-let currentPlayer = 'circle';
-
 const crossSvg = `<span class="whoplays__player">HRAJE: </span>
 <svg class="cross" width="20" height="20" viewBox="0 0 20 20" overflow="visible" stroke="white" stroke-width="2.5">
   <line x2="20" y2="20" />
@@ -12,6 +10,37 @@ const circleSvg = `<span class="whoplays__player">HRAJE: </span>
   <circle class="circle" cx="18" cy="18" r="10" stroke="white" stroke-width="2.5" fill="transparent"/>
 </svg>`;
 
+const myFindWinner = () => {
+  const square = Array.from(buttons);
+  const squareArray = square.map((symbol) => {
+    if (symbol.classList.contains('board__field--cross')) {
+      return 'x';
+    } else if (symbol.classList.contains('board__field--circle')) {
+      return 'o';
+    } else {
+      return '_';
+    }
+  });
+  const winner = findWinner(squareArray);
+  if (winner === 'x') {
+    setTimeout(() => {
+      alert('Vyhrál křížek!');
+      location.reload();
+    }, 200);
+  } else if (winner === 'o') {
+    setTimeout(() => {
+      alert('Vyhrálo kolečko!');
+      location.reload();
+    }, 200);
+  } else if (winner === 'tie') {
+    setTimeout(() => {
+      alert('Hra skončila nerozhodně.');
+      location.reload();
+    }, 200);
+  }
+};
+
+let currentPlayer = 'circle';
 const addClass = (event) => {
   if (currentPlayer === 'circle') {
     event.target.classList.add('board__field--circle');
@@ -20,33 +49,7 @@ const addClass = (event) => {
     circleElm.remove();
     const whoPlaysElm = document.querySelector('.whoplays');
     whoPlaysElm.innerHTML = crossSvg;
-    const square = Array.from(buttons);
-    const squareArray = square.map((symbol) => {
-      if (symbol.classList.contains('board__field--cross')) {
-        return 'x';
-      } else if (symbol.classList.contains('board__field--circle')) {
-        return 'o';
-      } else {
-        return '_';
-      }
-    });
-    const winner = findWinner(squareArray);
-    if (winner === 'x') {
-      setTimeout(() => {
-        alert('Vyhrál křížek!');
-        location.reload();
-      }, 200);
-    } else if (winner === 'o') {
-      setTimeout(() => {
-        alert('Vyhrálo kolečko!');
-        location.reload();
-      }, 200);
-    } else if (winner === 'tie') {
-      setTimeout(() => {
-        alert('Hra skončila nerozhodně.');
-        location.reload();
-      }, 200);
-    }
+    myFindWinner();
     return (currentPlayer = 'cross');
   } else if (currentPlayer === 'cross') {
     event.target.classList.add('board__field--cross');
@@ -55,36 +58,14 @@ const addClass = (event) => {
     crossElm.remove();
     const whoPlaysElm = document.querySelector('.whoplays');
     whoPlaysElm.innerHTML = circleSvg;
-    const square = Array.from(buttons);
-    const squareArray = square.map((symbol) => {
-      if (symbol.classList.contains('board__field--cross')) {
-        return 'x';
-      } else if (symbol.classList.contains('board__field--circle')) {
-        return 'o';
-      } else {
-        return '_';
-      }
-    });
-    const winner = findWinner(squareArray);
-    if (winner === 'x') {
-      setTimeout(() => {
-        alert('Vyhrál křížek!');
-        location.reload();
-      }, 200);
-    } else if (winner === 'o') {
-      setTimeout(() => {
-        alert('Vyhrálo kolečko!');
-        location.reload();
-      }, 200);
-    } else if (winner === 'tie') {
-      setTimeout(() => {
-        alert('Hra skončila nerozhodně.');
-        location.reload();
-      }, 200);
-    }
+    myFindWinner();
     return (currentPlayer = 'circle');
   }
 };
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+  button.addEventListener('click', addClass);
+});
 
 const confirmIt = (event) => {
   if (confirm('Opravdu chceš začít znovu?') === false) {
@@ -93,9 +74,3 @@ const confirmIt = (event) => {
 };
 
 document.querySelector('.restart').addEventListener('click', confirmIt);
-
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach((button) => {
-  button.addEventListener('click', addClass);
-});
