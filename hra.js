@@ -42,7 +42,7 @@ const myFindWinner = () => {
 };
 
 let currentPlayer = 'circle';
-const addClass = (event) => {
+const addSymbol = (event) => {
   if (currentPlayer === 'circle') {
     event.target.classList.add('board__field--circle');
     event.target.disabled = true;
@@ -76,12 +76,11 @@ const addClass = (event) => {
         }),
       },
     )
-      .then((d) => d.json())
+      .then((response) => response.json())
       .then((data) => {
         const { x, y } = data.position;
         const index = x + y * 10;
         console.log('hraje ' + index);
-        console.log(squareArray);
         buttons[index].click();
       });
 
@@ -97,7 +96,7 @@ const addClass = (event) => {
 };
 
 buttons.forEach((button) => {
-  button.addEventListener('click', addClass);
+  button.addEventListener('click', addSymbol);
 });
 
 document.querySelector('.restart').addEventListener('click', (e) => {
