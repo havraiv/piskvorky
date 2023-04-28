@@ -9,6 +9,7 @@ const circleSvg = `<span class="whoplays__player">HRAJE: </span>
 <svg class="circle" width="36" height="36">
   <circle class="circle" cx="18" cy="18" r="10" stroke="white" stroke-width="2.5" fill="transparent"/>
 </svg>`;
+
 const buttons = document.querySelectorAll('button');
 const myFindWinner = () => {
   const square = Array.from(buttons);
@@ -99,10 +100,8 @@ buttons.forEach((button) => {
   button.addEventListener('click', addClass);
 });
 
-const confirmIt = (event) => {
+document.querySelector('.restart').addEventListener('click', (e) => {
   if (confirm('Opravdu chceš začít znovu?') === false) {
-    event.preventDefault();
+    e.preventDefault();
   }
-};
-
-document.querySelector('.restart').addEventListener('click', confirmIt);
+});
