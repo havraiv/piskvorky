@@ -12,8 +12,7 @@ const circleSvg = `<span class="whoplays__player">HRAJE: </span>
 
 const buttons = document.querySelectorAll('button');
 const myFindWinner = () => {
-  const square = Array.from(buttons);
-  const squareArray = square.map((symbol) => {
+  const squareArray = Array.from(buttons).map((symbol) => {
     if (symbol.classList.contains('board__field--cross')) {
       return 'x';
     } else if (symbol.classList.contains('board__field--circle')) {
@@ -41,6 +40,36 @@ const myFindWinner = () => {
   }
 };
 
+const response = () => {
+  const squareArray = Array.from(buttons).map((symbol) => {
+    if (symbol.classList.contains('board__field--cross')) {
+      return 'x';
+    } else if (symbol.classList.contains('board__field--circle')) {
+      return 'o';
+    } else {
+      return '_';
+    }
+  });
+  currentPlayer = 'cross';
+  fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      board: squareArray,
+      player: 'x',
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const { x, y } = data.position;
+      const index = x + y * 10;
+      console.log('hraje ' + index);
+      console.log(squareArray);
+      buttons[index].click();
+    });
+};
 let currentPlayer = 'circle';
 const addSymbol = (event) => {
   if (currentPlayer === 'circle') {
@@ -51,39 +80,8 @@ const addSymbol = (event) => {
     const whoPlaysElm = document.querySelector('.whoplays');
     whoPlaysElm.innerHTML = crossSvg;
     myFindWinner();
-    return (currentPlayer = 'cross');
+    return response();
   } else if (currentPlayer === 'cross') {
-    const square = Array.from(buttons);
-    const squareArray = square.map((symbol) => {
-      if (symbol.classList.contains('board__field--cross')) {
-        return 'x';
-      } else if (symbol.classList.contains('board__field--circle')) {
-        return 'o';
-      } else {
-        return '_';
-      }
-    });
-    const response = fetch(
-      'https://piskvorky.czechitas-podklady.cz/api/suggest-next-move',
-      {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          board: squareArray,
-          player: 'x',
-        }),
-      },
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const { x, y } = data.position;
-        const index = x + y * 10;
-        console.log('hraje ' + index);
-        buttons[index].click();
-      });
-
     event.target.classList.add('board__field--cross');
     event.target.disabled = true;
     const crossElm = document.querySelector('.cross');
