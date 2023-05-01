@@ -44,6 +44,9 @@ const myFindWinner = () => {
 
 const response = () => {
   currentPlayer = 'cross';
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
   fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
     method: 'POST',
     headers: {
@@ -58,6 +61,16 @@ const response = () => {
     .then((data) => {
       const { x, y } = data.position;
       const index = x + y * 10;
+      buttons.forEach((button) => {
+        if (
+          button.classList.contains('board__field--cross') ||
+          button.classList.contains('board__field--circle')
+        ) {
+          button.disabled = true;
+        } else {
+          button.disabled = false;
+        }
+      });
       buttons[index].click();
     });
 };
