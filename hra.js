@@ -11,8 +11,8 @@ const circleSvg = `<span class="whoplays__player">HRAJE: </span>
 </svg>`;
 
 const buttons = document.querySelectorAll('button');
-const myFindWinner = () => {
-  const squareArray = Array.from(buttons).map((symbol) => {
+const squareArray = () => {
+  return Array.from(buttons).map((symbol) => {
     if (symbol.classList.contains('board__field--cross')) {
       return 'x';
     } else if (symbol.classList.contains('board__field--circle')) {
@@ -21,7 +21,9 @@ const myFindWinner = () => {
       return '_';
     }
   });
-  const winner = findWinner(squareArray);
+};
+const myFindWinner = () => {
+  const winner = findWinner(squareArray());
   if (winner === 'x') {
     setTimeout(() => {
       alert('Vyhrál křížek!');
@@ -41,15 +43,6 @@ const myFindWinner = () => {
 };
 
 const response = () => {
-  const squareArray = Array.from(buttons).map((symbol) => {
-    if (symbol.classList.contains('board__field--cross')) {
-      return 'x';
-    } else if (symbol.classList.contains('board__field--circle')) {
-      return 'o';
-    } else {
-      return '_';
-    }
-  });
   currentPlayer = 'cross';
   fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
     method: 'POST',
@@ -57,7 +50,7 @@ const response = () => {
       'Content-type': 'application/json',
     },
     body: JSON.stringify({
-      board: squareArray,
+      board: squareArray(),
       player: 'x',
     }),
   })
@@ -65,8 +58,6 @@ const response = () => {
     .then((data) => {
       const { x, y } = data.position;
       const index = x + y * 10;
-      console.log('hraje ' + index);
-      console.log(squareArray);
       buttons[index].click();
     });
 };
